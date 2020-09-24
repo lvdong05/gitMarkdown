@@ -93,6 +93,34 @@ Git 和其他版本控制系统如SVN的一个不同之处就是有暂存区的�
 
 ##### 撤销修改
 
+如果没有将修改提交到暂存区则直接`git checkout -- filename`  类似于`Ctrl +Z`
+
+如果已经将修改提交到了暂存区则`git reset HEAD filename`  `git reset`既表示回退版本也可以将暂存区的修改撤销到工作区，工作区的 修改则同上
+
+如果已经`git commit`修改 则可以直接回退版本`git reset --hard HEAD^`
+
+##### 删除文件
+
+删错了则可以直接从版本库里恢复【前提是版本库里还有】`git checkout -- checkout.txt`
+
+确实要删除则可以从版本库里删除，并提交`git rm checkout.txt   git commit`
+
+#### 2.3远程仓库
+
+本地仓库和远程仓库的传输是通过SSH加密的，所以，首先需要创建SSH Key 在用户主目录下，看看有没有`.ssh`目录，如果有在看看这个目录下有没有`id_rsa私钥不能泄露 id_rsa.pub公钥` 
+
+创建SSH Key：命令
+
+`$ ssh-keygen -t rsa -C "649166610@qq.com"  `
+
+添加远程仓库
+
+`git remote add github git@github.com:lvdong05/gitMarkdown.git`
+
+将本地库的所有内容推送到远程库上
+
+`git push -u github master` `git push`实际上是把当前分支master推送到远程，由于远程仓库是空的，第一次推送master分支时，加上了`-u`参数，Git不但会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取就可以简化命令
+
 
 
 #### markdown语法在
