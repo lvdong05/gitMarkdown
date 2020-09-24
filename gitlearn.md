@@ -49,7 +49,19 @@ $ git init
 
 第二步，用命令`git commit -m "explanation text" `-m 后面输入的是本次提交的说明文字
 
+#### 2.2 时光机穿梭
 
+`git diff filename`查看具体修改的内容 在文件add、cmmit之前才可以查看
+
+`git status`命令查看仓库的当前状态
+
+**版本回退**
+
+`git log`命令显示从最近到最远的提交日志的详细信息 `git log --pretty=oneline`显示简略信息
+
+在git中，用`HEAD`表示当前版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，往上100个版本可以写成`HEAD~100`
+
+回退到上一个版本`git reset --hard HEAD^` 
 
 #### markdown语法在
 
