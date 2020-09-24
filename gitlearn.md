@@ -131,11 +131,45 @@ Git 和其他版本控制系统如SVN的一个不同之处就是有暂存区的�
 
 #### 2.4 分支管理
 
+##### 创建与合并分支
+
 查看分支命令`git branch`
 
 在Git里，master分支是主分支【分支也就是一条时间线】
 
 新建分支并切换到新建分支命令`git switch -c ld`  相当于 `git branch ld`和`git switch ld`这两个命令  也可以用这个命令`git checkout -b ld`
+
+合并某分支到当前分支命令
+
+`git merge ld` 【ld是指ld这个分支】 这个是 ***快进模式 Fast-forward***  的合并也就是直接把master 指向 ld 的提交
+
+删除分支	`git branch -d ld`
+
+##### 解决冲突
+
+多个分支同时修改同一内容并提交，可能会造成冲突，要先手动解决冲突后，再提交
+
+`git log --graph` 查看合并分支图 `git log --graph --pretty=oneline --abbrev-commit`
+
+在当前分支下不能删除当前分支【即我不能删我自己】
+
+##### 分支管理策略
+
+通常，合并分支时，如果可能，Git会用`Fast forward`模式，但这种模式下，删除分支后，会丢掉分支信息。
+
+强制禁用`Fast forward`模式，Git会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息
+
+`git merge --no-ff -m "merge with no-ff" dev`
+
+`--no-ff`表示禁用`Fast forward`  本次合并要创建一个新的commit，所以要交`-m`参数
+
+##### 分支策略
+
+在实际开发中，我们应该按照几个基本原则进行分支管理：
+
+>+ `master`分支应该是非常稳定的，也就是仅用来发布新版本，平时不能再上面干活
+>+ `dev`分支是平时用来开发的分支，也就是说，`dev`分支是不稳定的，当要发布版本时，比如要发布v1.0版本，则把`dev`分支合并到`master`上，在`master`分支上发布v1.0版本
+>+ 团队开发时，团队组员都在`dev`上干活，每个人都有自己的分支，然后不时往`dev`分支上合并
 
 
 
