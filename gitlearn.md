@@ -129,11 +129,13 @@ Git 和其他版本控制系统如SVN的一个不同之处就是有暂存区的�
 
 `git clone git@github.com:lvdong05/gitskills.git`
 
-##### 2.4 分支管理
+#### 2.4 分支管理
+
+查看分支命令`git branch`
 
 在Git里，master分支是主分支【分支也就是一条时间线】
 
-新建分支并切换到新建分支命令`git switch -c ld`  相当于 `git branch ld`和`git switch ld`这两个命令
+新建分支并切换到新建分支命令`git switch -c ld`  相当于 `git branch ld`和`git switch ld`这两个命令  也可以用这个命令`git checkout -b ld`
 
 
 
