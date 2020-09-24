@@ -177,11 +177,93 @@ Git 和其他版本控制系统如SVN的一个不同之处就是有暂存区的�
 
 当当前分支上的工作还未完成无法提交。同时又需要到另一个分支上去修复bug时，可以使用`git stash`命令 将当前分支上的工作**储藏**，然后就可以切换到另一个分支上去修复bug。当再次切换到当前分支时可以用 `git stash list`命令来查看**储藏**的工作，同时也可以通过`git stash pop`来恢复工作【注：`git stash apply`命令也可以用来恢复工作，不过同时还需要`git stash drop`来删除**储藏**的工作】
 
-#### markdown语法在
+同样的bug存在于不同的分支上，如果当前分支也有同样的bug 要修复则可以在当前分支上用`git cherry-pick commit Id` 这个命令，这样可以把其他分支上的一个特定提交，复制到当前分支
 
-### 3.怎么创建大纲和目录
+##### Feature分支
 
-#### 怎么创建大纲和目录
+软件开发中，总有无穷无尽的新功能要不断添加进来
 
-#### 怎么创建目录
+添加新功能时，为了不让一些实验性质的代码，把主分支搞乱，所以每添加一个新功能，最好新建一个feature分支，在上面开发完，完成后，合并，最后删除该feature分支。
+
+删除一个未合并的分支`git branch -D feature-vulcan`  	`-d`  删除已合并的分支 	`-D`强行删除
+
+##### 多人协作
+
+当从远程仓库克隆时，实际上Git自动把本地的`master`分支和远程的`master`分支对应起来了，远程仓库的默认名称为`origin` 	在关联远程仓库时可自己设置远程仓库名称
+
+`git remote`查看远程仓库信息	`git remote -v`查看远程仓库更详细信息
+
+推送分支`git push github dev` 需要推送那个分支就推送那个分支
+
+##### 抓取分支
+
+团队开发时，如果有多个开发人员同时对同一个分支进行开发时，在向远程仓库推送时需要首先`git pull`以防与其他人的提交冲突
+
+设置本地`dev`分支与远程仓库`dev`分支的链接命令`git branch --set-upstream-to=github/dev dev`
+
+##### Rebase 【变基】
+
+#### 2.5标签管理
+
+发布一个版本时，通常现在版本库中打一个标签【标签是版本库的一个快照】
+
+切换到要打标签的分支 `git tag <name>`
+
+如`git tag v1.0` 
+
+默认标签打在最新提交的commit 	查看历史提交的commit Id 就可以对历史版本就行打标签了
+
+`git tag v0.9 b2353c8 `  查看历史提交的commit `git log --pretty=oneline --abbrev-commit`
+
+`git show <tagname>` 查看标签信息
+
+创建带有说明的标签 `git tag -a v0.1 -m "vesion0.1 released" b2353c8`  `-a`指定标签名，`-m`指定说明文字
+
+删除标签 `git tag -d v0.1`
+
+推送某个标签到远程仓库 `git push github v1.0`  
+
+一次性推送全部尚未推送到远程的本地标签`git push github --tags`
+
+删除远程标签 首先要先删除本地标签 `git tag -d v1.0` 然后删除远程仓库标签 `git push github :refs/tags/v1.0`
+
+### 3.自定义Git
+
+#### 3.1配置忽略文件
+
+有些时候，必须把某些文件放到Git工作目录中，但又不能提交它们，比如保存了数据库密码的配置文件
+
+在Git工作区的根目录下创建一个特殊的`.gitignore`文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件  [配置文件链接](https://github.com/github/gitignore)
+
+如果想添加被忽略的文件 `git add -f App.class`  可以用`-f`强制添加到Git
+
+或者 可能是 `.gitignore`文件写的有问题，则可以`git check-ignore -v App.class` 可以知道`.gitignore`哪里有问题
+
+#### 3.2 配置别名
+
+`git config --global alias.st status`  就可以用`git st` 代替 `git status`了
+
+`git config --global alias.co checkout`
+
+`git config --global alias.ci commit`
+
+`git config --global alias.br branch`
+
+从暂存区撤销修改 `git reset HEAD file`  是一个`unstage`操作  则可以配置一个`unstage`的别名
+
+`git config --global alias.unstage 'reset HEAD'`	`git unstage test.py`
+
+配置一个`git last` 显示最后一次提交信息：
+
+`git config --global alias.last 'log -1'`
+
+##### 配置文件
+
+`config --global` 是针对当前用户，如果不加`--global`则是针对当前仓库
+
+### 4.使用GitHub
+
+删除远程仓库 `git remote rm origin`   关联远程仓库 `git remote add origin git@github.com:lvdong05/gitMarkdown.git` `origin`可以自定义
+
+#### 
 
