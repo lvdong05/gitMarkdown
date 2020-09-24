@@ -113,13 +113,27 @@ Git 和其他版本控制系统如SVN的一个不同之处就是有暂存区的�
 
 `$ ssh-keygen -t rsa -C "649166610@qq.com"  `
 
-添加远程仓库
+##### 添加远程仓库
+
+先有本地库再关联远程库
 
 `git remote add github git@github.com:lvdong05/gitMarkdown.git`
 
 将本地库的所有内容推送到远程库上
 
 `git push -u github master` `git push`实际上是把当前分支master推送到远程，由于远程仓库是空的，第一次推送master分支时，加上了`-u`参数，Git不但会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取就可以简化命令
+
+##### 从远程仓库克隆
+
+从零开始开发，一般是先创建远程仓库，然后从远程仓库克隆
+
+`git clone git@github.com:lvdong05/gitskills.git`
+
+##### 2.4 分支管理
+
+在Git里，master分支是主分支【分支也就是一条时间线】
+
+新建分支并切换到新建分支命令`git switch -c ld`  相当于 `git branch ld`和`git switch ld`这两个命令
 
 
 
