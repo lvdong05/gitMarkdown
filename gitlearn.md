@@ -45,7 +45,7 @@ $ git init
 
 **把文件添加到版本库**
 
-第一步，用命令`git add filename`告诉git，把文件提交到仓库
+第一步，用命令`git add filename`告诉git，把文件提交到仓库 `git add dir/`  添加整个文件夹
 
 第二步，用命令`git commit -m "explanation text" `-m 后面输入的是本次提交的说明文字
 
