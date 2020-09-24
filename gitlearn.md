@@ -25,7 +25,7 @@ $ git config --global user.email "649166610@qq.com"
 
 版本库又名仓库【repository】，可以理解为是一个目录，这个目录下的文件都可以被git管理起来。
 
-**创建版本库命令**
+##### 创建版本库命令
 
 ```git
 $ mkdir learngit
@@ -55,13 +55,45 @@ $ git init
 
 `git status`命令查看仓库的当前状态
 
-**版本回退**
+##### 版本回退
 
 `git log`命令显示从最近到最远的提交日志的详细信息 `git log --pretty=oneline`显示简略信息
 
 在git中，用`HEAD`表示当前版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，往上100个版本可以写成`HEAD~100`
 
-回退到上一个版本`git reset --hard HEAD^` 
+回退到上一个版本`git reset --hard HEAD^`  回到当前版本 `git reset --hard commit id` commit id不用写全，写前几位就行 如[4831d]
+
+`git reflog` **记录每一次commit id 查看命令历史**
+
+##### 工作区和暂存区
+
+工作区（Working Directory）
+
+Git 和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念
+
+工作区指的是当前git目录 如【gitMarkdown】
+
+版本库（Repository）
+
+工作区有一个隐藏目录`.git`，这个不算工作区，而是Git的版本库
+
+版本库中有很多东西。最重要的及时称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支`master`，以及指向`master`的一个指针`HEAD`
+
+前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：
+
+第一步：是用`git add`把文件添加进去，实际上就是把文件修改添加到暂存区
+
+第二步：是用`git commit`提交更改，实际上就是把暂存区的所有内容提交到当前分支
+
+##### 管理修改
+
+`$ cat filename`查看文件内容
+
+`$ git commit`只提交添加到暂存区内的修改，工作区内的修改如果未被添加到暂存区是不会被提交到分支上的
+
+##### 撤销修改
+
+
 
 #### markdown语法在
 
