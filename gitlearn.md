@@ -197,9 +197,11 @@ Git 和其他版本控制系统如SVN的一个不同之处就是有暂存区的�
 
 ##### 抓取分支
 
+团队开发时，如果有多个开发人员同时对同一个分支进行开发时，在向远程仓库推送时需要首先`git pull`以防与其他人的提交冲突
 
+设置本地`dev`分支与远程仓库`dev`分支的链接命令`git branch --set-upstream-to=github/dev dev`
 
-
+##### Rebase 【变基】
 
 #### markdown语法在
 
